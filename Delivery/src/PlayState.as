@@ -5,6 +5,7 @@ package
 	public class PlayState extends FlxState
 	{
 		protected var _level:FlxTilemap;
+		protected var _player:Player;
 		
 		[Embed(source="assets/basic_tiles.png")] public static var ImgTiles:Class;
 		
@@ -33,6 +34,14 @@ package
 			_level = new FlxTilemap();
 			_level.loadMap(mapData, ImgTiles, 16, 16);
 			add(_level);
+			
+			_player = new Player(FlxG.width / 2, FlxG.height / 2);
+			add(_player);
+		}
+		
+		override public function update():void {
+			super.update();
+			FlxG.collide();
 		}
 	}
 }
