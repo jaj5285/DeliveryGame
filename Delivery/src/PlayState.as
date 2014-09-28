@@ -6,6 +6,7 @@ package
 	{
 		protected var _level:FlxTilemap;
 		protected var _player:Player;
+		protected var _present:Present;
 		
 		[Embed(source="assets/basic_tiles.png")] public static var ImgTiles:Class;
 		
@@ -35,13 +36,21 @@ package
 			_level.loadMap(mapData, ImgTiles, 16, 16);
 			add(_level);
 			
-			_player = new Player(FlxG.width / 2, FlxG.height / 2);
+			_player = new Player(FlxG.width / 2 - 100, FlxG.height / 2);
 			add(_player);
+			_present = new Present(FlxG.width / 2 + 50, FlxG.height / 2, _player);
+			_player.present = _present;
+			add(_present);
 		}
 		
 		override public function update():void {
 			super.update();
 			FlxG.collide();
+			
+			// temporary
+			if (FlxG.keys.justPressed("C")) {
+				_player.hurt(0);
+			}
 		}
 	}
 }
