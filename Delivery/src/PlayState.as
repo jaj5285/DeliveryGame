@@ -21,7 +21,7 @@ package
 			var mapData:String = "";
 			for (var j:int = 0; j < gridH; j++) {
 				for (var i:int = 0; i < gridW; i++) {
-					if (j == gridH - 1)
+					if ((j >= gridH - 3 && i >= gridW / 2) || j == gridH - 1)
 						mapData = mapData.concat("1");
 					else
 						mapData = mapData.concat("0");
