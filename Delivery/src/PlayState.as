@@ -8,8 +8,6 @@ package
 		protected var _player:Player;
 		protected var _present:Present;
 		
-		protected var _flyer:Flyer;
-		
 		[Embed(source="assets/basic_tiles.png")] public static var ImgTiles:Class;
 		
 		override public function create():void
@@ -38,16 +36,11 @@ package
 			_level.loadMap(mapData, ImgTiles, 16, 16);
 			add(_level);
 			
-			// Add the player and present to carry
 			_player = new Player(FlxG.width / 2 - 100, FlxG.height / 2);
 			add(_player);
 			_present = new Present(FlxG.width / 2 + 50, FlxG.height / 2, _player);
 			_player.present = _present;
 			add(_present);
-			
-			// Add the different types of enemies
-			_flyer = new Flyer(FlxG.width / 2 - 50, FlxG.height / 2 - 75, _player);
-			add(_flyer);
 		}
 		
 		override public function update():void {
