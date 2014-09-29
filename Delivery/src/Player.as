@@ -17,6 +17,8 @@ package
 			width = 75;
 			height = 50;
 			
+			addAnimation("idle", [0]);
+			addAnimation("grounded", [1]);
 			addAnimation("flap", [0, 1, 2, 3], 10);
 			play("flap");
 			
@@ -48,19 +50,23 @@ package
 			//Smooth slidey walking controls
 			acceleration.x = 0;
 			if(FlxG.keys.LEFT) {
-				acceleration.x -= drag.x;
+				if (!isTouching(FLOOR)) acceleration.x -= drag.x;
 				facing = LEFT;
 			}
 			if(FlxG.keys.RIGHT) {
-				acceleration.x += drag.x;
+				if (!isTouching(FLOOR)) acceleration.x += drag.x;
 				facing = RIGHT;
 			}
 			
 			//Flight controls
-			if (FlxG.keys.Z && y > 10)
+			if (FlxG.keys.Z && y > 10) {
 				velocity.y = -acceleration.y * 0.25;
-			//if (FlxG.keys.justPressed("Z"))
-			//	velocity.y = -acceleration.y * 0.35;
+				play("flap");
+			}
+			else if (velocity.x != 0 || velocity.y != 0)
+				play("idle");
+			else 
+				play("grounded");
 		}
 	}
 }

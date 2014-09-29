@@ -23,15 +23,13 @@ package
 		
 		// Drop the present
 		public function drop():void {
-			if (held) {
+			if (held)
 				held = false;
-				flicker(.5);
-			}
 		}
 		
 		override public function update():void {
 			// Pick up the present
-			if (overlaps(player) && !flickering && !held) {
+			if (overlaps(player) && !player.flickering && !held) {
 				held = true;
 				player.getPresent();
 			}
