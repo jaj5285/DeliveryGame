@@ -6,11 +6,13 @@ package
 	{
 		protected var player:Player;
 		protected var held:Boolean;
+		[Embed(source="assets/package.png")] public static var ImgPresent:Class;
 		
 		public function Present(X:Number, Y:Number, _player:Player)
 		{
 			super(X, Y);
-			makeGraphic(10, 10, 0xffFFDD38);
+			//makeGraphic(10, 10, 0xffFFDD38);
+			loadGraphic(ImgPresent);
 			maxVelocity.x = 50;				//walking speed
 			acceleration.y = 330;			//gravity
 			drag.x = maxVelocity.x * 4;		//deceleration (sliding to a stop)
@@ -35,8 +37,8 @@ package
 			}
 			
 			if (held) {
-				x = player.x + 3;
-				y = player.y + 12;
+				x = player.x + player.width / 2 - width / 2;
+				y = player.y + player.height - height;
 				solid = false;
 				acceleration.y = 0;
 			} else {

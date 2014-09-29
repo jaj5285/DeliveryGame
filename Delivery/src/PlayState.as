@@ -46,7 +46,7 @@ package
 			add(_present);
 			
 			// Add the different types of enemies
-			_flyer = new Flyer(FlxG.width / 2 - 50, FlxG.height / 2 - 75, _player);
+			_flyer = new Flyer(500, 100, _player);
 			add(_flyer);
 		}
 		
@@ -54,10 +54,17 @@ package
 			super.update();
 			FlxG.collide();
 			
+			FlxG.overlap(_player, _flyer, takeDamage);
+			
 			// temporary
 			if (FlxG.keys.justPressed("C")) {
 				_player.hurt(0);
 			}
+		}
+		
+		private function takeDamage(player:Player, enemy:FlxSprite):void {
+			player.hurt(0);
+			//if (enemy is Bullet) enemy.kill();
 		}
 	}
 }
