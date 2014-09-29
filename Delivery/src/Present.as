@@ -29,7 +29,7 @@ package
 		
 		override public function update():void {
 			// Pick up the present
-			if (overlaps(player) && !flickering) {
+			if (overlaps(player) && !flickering && !held) {
 				held = true;
 				player.getPresent();
 			}

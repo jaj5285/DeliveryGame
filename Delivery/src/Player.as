@@ -19,10 +19,7 @@ package
 		public function getPresent():void {
 			//Adjust the bounding box of the player
 			height = 22;
-			if (isTouching(FLOOR)) {
-				y -= 16;
-				trace("floor");
-			}
+			y -= 6;
 		}
 		
 		override public function hurt(Damage:Number):void {
@@ -33,8 +30,7 @@ package
 			}
 		}
 		
-		override public function update():void
-		{			
+		override public function update():void {
 			//Smooth slidey walking controls
 			acceleration.x = 0;
 			if(FlxG.keys.LEFT)
